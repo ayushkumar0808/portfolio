@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayush Kumar | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#0f0f0f;color:white;scroll-behavior:smooth;}
+section{padding:80px 10%;}
+h1,h2{font-weight:800;margin-bottom:20px;}
+.highlight{color:#00e0ff;}
+nav{
+position:fixed;
+top:0;left:0;width:100%;
+background:#111;
+padding:15px 10%;
+display:flex;
+justify-content:space-between;
+z-index:1000;
+}
+nav a{
+color:white;text-decoration:none;margin-left:20px;
+font-weight:500;
+}
+nav a:hover{color:#00e0ff;}
+
+.hero{
+display:flex;
+align-items:center;
+justify-content:space-between;
+min-height:100vh;
+}
+.hero-text{max-width:600px;}
+.hero img{
+width:300px;
+border-radius:20px;
+box-shadow:0 0 30px rgba(0,224,255,0.3);
+}
+
+.btn{
+display:inline-block;
+padding:12px 25px;
+border-radius:30px;
+margin-top:15px;
+text-decoration:none;
+font-weight:600;
+background:linear-gradient(45deg,#00e0ff,#0072ff);
+color:white;
+}
+
+.skills-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
+}
+.skill{
+background:#1c1c1c;
+padding:20px;
+border-radius:15px;
+text-align:center;
+}
+
+.project-card{
+background:#1a1a1a;
+padding:20px;
+border-left:4px solid #00e0ff;
+margin-bottom:20px;
+border-radius:10px;
+}
+
+.repo-card{
+background:#1c1c1c;
+padding:15px;
+margin-bottom:15px;
+border-radius:10px;
+}
+
+.contact-links a{
+display:inline-block;
+margin-right:20px;
+margin-top:10px;
+color:#00e0ff;
+text-decoration:none;
+}
+
+footer{
+text-align:center;
+padding:40px;
+background:#111;
+color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div><strong>Ayush Kumar</strong></div>
+<div>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#github">GitHub</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+<div class="hero-text">
+<h1>Hi, I'm <span class="highlight">Ayush Kumar</span></h1>
+<h2><span id="typing"></span></h2>
+
+<a href="resume.pdf" download class="btn">Download Resume</a>
+</div>
+
+<img src="photo.jpg" alt="Ayush Kumar">
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<h2>About Me</h2>
+<p>
+I am a Full Stack Developer and AI/ML Enthusiast passionate about building scalable applications,
+real-time systems and intelligent solutions. I enjoy solving complex problems and continuously
+improving my technical skills.
+</p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<h2>Skills</h2>
+<div class="skills-grid">
+<div class="skill">C++</div>
+<div class="skill">Python</div>
+<div class="skill">JavaScript</div>
+<div class="skill">React</div>
+<div class="skill">Node.js</div>
+<div class="skill">MySQL</div>
+<div class="skill">AI / ML</div>
+<div class="skill">Full Stack</div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<h2>Featured Projects</h2>
+
+<div class="project-card">
+<h3>Real Time Chat App</h3>
+<p>Full-stack real-time communication system.</p>
+<a href="https://real-time-chat-app-rq6r.onrender.com/login" target="_blank" class="btn">Live Project</a>
+</div>
+
+<div class="project-card">
+<h3>E-Commerce Website</h3>
+<p>Modern React-based e-commerce platform.</p>
+<a href="https://ecommerce-website-react-phi.vercel.app/" target="_blank" class="btn">Live Project</a>
+</div>
+
+</section>
+
+<!-- GITHUB AUTO LOAD -->
+<section id="github">
+<h2>My GitHub Repositories</h2>
+<div id="repos"></div>
+</section>
+
+<!-- LEETCODE -->
+<section>
+<h2>LeetCode</h2>
+<a href="https://leetcode.com/u/confused_ayush/" target="_blank" class="btn">View LeetCode Profile</a>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Contact Me</h2>
+
+<div class="contact-links">
+<a href="mailto:kayush3647@gmail.com">Email</a>
+<a href="https://github.com/ayushkumar0808" target="_blank">GitHub</a>
+<a href="https://www.linkedin.com/in/ayushkumar0808" target="_blank">LinkedIn</a>
+<a href="https://codolio.com/profile/confused.ayush" target="_blank">Codolio</a>
+</div>
+
+</section>
+
+<footer>
+© 2026 Ayush Kumar | All Rights Reserved
+</footer>
+
+<script>
+new Typed("#typing", {
+strings:["Full Stack Developer","AI/ML Enthusiast","Competitive Programmer"],
+typeSpeed:50,
+backSpeed:30,
+loop:true
+});
+
+ScrollReveal().reveal("section",{distance:"50px",duration:1000,origin:"bottom",interval:200});
+
+fetch("https://api.github.com/users/ayushkumar0808/repos?sort=updated")
+.then(res=>res.json())
+.then(data=>{
+let output="";
+data.slice(0,6).forEach(repo=>{
+output+=`
+<div class="repo-card">
+<h4>${repo.name}</h4>
+<p>${repo.description || "No description available"}</p>
+<a href="${repo.html_url}" target="_blank">View Repository</a>
+</div>
+`;
+});
+document.getElementById("repos").innerHTML=output;
+});
+</script>
+
+</body>
+</html>
